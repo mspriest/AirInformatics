@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Air Quality and GHG Emissions</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+      integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    
+    <!-- Our CSS -->
+    <link rel="stylesheet" type="text/css" href="static/css/style.css">
+    <style>
+      body {
+        position: relative; 
+      }
+      .affix {
+        top:0;
+        width: 100%;
+        z-index: 9999 !important;
+      }
+      .navbar {
+        margin-bottom: 0px;
+      }
+    
+      .affix ~ .container-fluid {
+       position: relative;
+       top: 50px;
+      }
+      /* For Air Quality Nav Tab: Has 2 sections */
+      #aqtimeline {padding-top:10px;height:50px;color: #fff; background-color: rgba(5, 9, 48, 0.534);}
+      #aqwrost15 {padding-top:10px;height:50px;color: #fff; background-color: rgba(5, 9, 48, 0.534);}
+      /* For Emissions has 4 sections */
+      /* #emstimeline{padding-top:10px;height:50px;color: #fff; background-color: #ff9800;} */
+      #emstop10{padding-top:10px;height:50px;color: #fff; background-color: #ff9800;}
+      #emstop2{padding-top:10px;height:50px;color: #fff; background-color: #ff9800;}
+      #emstopfacility{padding-top:10px;height:50px;color: #fff; background-color: #ff9800;}
+      /* For GHG Nav Tab: Has 1 sections */
+      #ghgpa {padding-top:10px;height:50px;color: #fff; background-color: rgba(8, 34, 56, 0.473);}
+      /* For Consequence Nav tab has 2 sections */
+      #conshealth {padding-top:10px;height:50px;color: #fff; background-color: #00bcd4;}
+      #consgov {padding-top:10px;height:50px;color: #fff; background-color: #00bcd4;}
+      /* For About has 2 sections */
+      #abtsite {padding-top:10px;height:50px;color: #fff; background-color: #009688;}
+      #abtus {padding-top:10px;height:50px;color: #fff; background-color: #009688;}
+
+      #countypie1 {
+          width: 500px;
+          height: 500px;
+  
+            }
+      #countypie2 {
+          width: 500px;
+          height: 500px;
+      }
+    .footer {
+     position: fixed;
+     left: 0;
+     bottom: 0;
+     width: 100%;
+     text-align: center;
+    }
+
+      </style>
+  </head>
+  <!--**************************************************************************************************************************************************************************************-->
+<!--**************************************************************************************************************************************************************************************-->
+<!--**************************************************************************************************************************************************************************************-->
+  
+<body data-spy="scroll" data-target=".navbar" data-offset="50">
+
+  <!-- This section is the navigation bar and will be a scroll highlight type instead of creating new pages -->
+<!-- Home PAA page -->
+
+    <nav class="navbar navbar-inverse nav-bar-fixed navbar-expand-lg navbar-light bg-light" data-spy="affix" data-offset-top="197">
+      <a class="navbar-brand" href="#">PAA</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#ourNavbar"
+          aria-controls="ourNavbar"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+        <span class="navbar-toggler-icon"></span>
+        </button>
+        <!--**************************************************************************************************************************************************************************************-->
+<!-- Air Quality Tabs -->
+      <div class="collapse navbar-collapse" id="ourNavbar">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              id="ourNavbar"
+              role="button"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              Air Quality
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="#aqtimeline">Dynamic: PA Timeline</a>
+              <a class="dropdown-item" href="#aqworst15">Worst: Top 15 Counties</a>
+          </li>
+          <!--**************************************************************************************************************************************************************************************-->
+<!-- Emissions Tabs -->
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              id="ourNavbar"
+              role="button"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              Emissions
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <!-- <a class="dropdown-item" href="#emstimeline">Dynamic: Timeline</a> -->
+              <a class="dropdown-item" href="#emstop10">Top 10: Counties</a>
+              <a class="dropdown-item" href="#emstop2">Top Counities: Deeper Dive</a>
+              <a class="dropdown-item" href="#emstopfacility">Top 5: Facilities</a>
+          </li>
+
+          <!--**************************************************************************************************************************************************************************************-->
+<!-- GHG Emission Tab-->
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              id="ourNavbar"
+              role="button"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              GHG Emission 
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="#ghgpa">PA: GHG vs. Air Quality by County</a>
+          </li>
+
+          <!--**************************************************************************************************************************************************************************************-->
+<!-- Consequences Tabs (due to time frame we will not have this page running with the content)-->
+<!-- 
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              id="ourNavbar"
+              role="button"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              Consequences
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="#conshealth">Health Impacts </a>
+              <a class="dropdown-item" href="#consgov">Governmental Policies</a>
+          </li> -->
+
+          <!--**************************************************************************************************************************************************************************************-->
+<!-- About the Site Tabs -->
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              id="ourNavbar"
+              role="button"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              About
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="#abtsite">Site</a>
+              <a class="dropdown-item" href="#abtus">Team</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+<!-- **************************************************************************************************************************************************************************** -->
+<!--**************************************************************************************************************************************************************************************-->
+
+<!-- This is the Title -->
+
+    <div class="container-fluid">
+      <div class="row"></div>
+        <div class="col-md-12 jumbotron text-center">
+          <h1>Air Quality in Pennsylvania</h1>
+          <p class="lead"><strong>
+
+
+            Explore Indepth by County Trends and Charts
+
+
+          </strong></p>
+
+
+          <p>
+            We are building off of the first project about carbon emissions and climate concerns. <br> We started with World View to United States and to Pennsylvania. <br> Now we look to isolate Pennsylvania and utlize this website to present our findings. <br> We dive deeper into the carbon emissions and air pollution on the county level in Pennsylvania. <br> We utilize two datasets: Air Pollution Data from <a href="https://www.phaim1.health.pa.gov/EDD/WebForms/AirQualityCnty.aspx"target="_blank"> EDDIE </a> and Facility Data from the<a href="https://ghgdata.epa.gov/ghgp/main.do", target="_blank"> EPA </a>
+          </p>
+        </div>
+      </div>
+    </div>
+
+ <!--**************************************************************************************************************************************************************************************-->
+<!--**************************************************************************************************************************************************************************************-->
+<div class="row">
+  <div class= "column side">
+    <h2> </h2>
+  </div>
+  
+  <div class="column middle">
+
+    <!-- Air Quality Sections -->
+    <div id="ourNavbar" class="container-fluid" ></div>
+      <div class = "text-center">
+        <h2 id="aqtimeline">Air Quality Dynamic Timeline</h2>
+        <p>....</p>
+        <div id="paair"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    <!--**************************************************************************************************************************************************************************************-->
+    <div class="row">
+      <div class= "column side">
+        <h2> </h2>
+      </div>
+    
+      <div class="column middle">
+        <div id="ourNavbar" class="container-fluid"></div>
+          <div class = "text-center">
+            <h2 id="aqwrost15"> Top 15 County with the Worst Air Quality </h2>
+            <p>....</p>
+            <div id="top15air"></div>
+          </div>
+          <div class= "column side">
+            <h2> </h2>
+          </div>
+        </div>
+    </div>
+    <!--**************************************************************************************************************************************************************************************-->
+    <!--**************************************************************************************************************************************************************************************-->
+
+    <!-- Emissions Section -->
+
+
+    <!-- <div id="ourNavbar" class="container-fluid"></div>
+      <div class = "text-center">
+        <h2 id="emstimeline" >Emissions Dynamic Timeline of PA</h2>
+        <p>.......</p>
+      </div> -->
+
+    <!--**************************************************************************************************************************************************************************************-->
+    <div class="row">
+      <div class= "column side">
+        <h2> </h2>
+      </div>
+      
+      <div class="column middle">
+        <div id="ourNavbar" class="container-fluid"></div>
+          <div class = "text-center">
+            <h2 id="emstop10">Top 10 Counties with the Largest Carbon Emission</h2>
+            <div id="countybar" ></div>
+            <p>.......</p>
+          </div>
+          <div class= "column side">
+            <h2> </h2>
+          </div>
+        </div>
+    </div>
+    <!--**************************************************************************************************************************************************************************************-->
+    <div class="row">
+      <div class= "column side">
+        <h2> </h2>
+      </div>
+      
+      <div class="column middle">
+    <div id="ourNavbar" class="container-fluid"></div>
+      <div class= "text-center">
+        <h2 id="emstop2" >Deeper Dive into the Top 2 Counties</h2>
+        <div>
+          <div align="center">
+            <div id="countypie1"></div>
+          </div>
+          <div align="center">
+            <div id="countypie2"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class= "column side">
+      <h2> </h2>
+    </div>
+  </div>
+</div>
+    <!--**************************************************************************************************************************************************************************************-->
+    <div class="row">
+      <div class= "column side">
+        <h2> </h2>
+      </div>
+      
+      <div class="column middle">
+    <div id="ourNavbar" class="container-fluid"></div>
+      <div class = "text-center">
+        <h2 id="emstopfacility" > Top Facilites with the Largest Carbon Emission</h2>
+        <p>.......</p>
+        <div align="center">
+        <div id="parentbar"></div>
+      </div>
+      </div>
+      <div class= "column side">
+        <h2> </h2>
+      </div>
+    </div>
+  </div>
+    <!--**************************************************************************************************************************************************************************************-->
+    <!--**************************************************************************************************************************************************************************************-->
+
+    <!-- GHG Section -->
+    <div class="row">
+      <div class= "column side">
+        <h2> </h2>
+      </div>
+      
+      <div class="column middle">
+    <div id="ourNavbar" class="container-fluid"></div>
+      <div class = "text-center">
+        <h2 id="ghgpa" >GHG vs. Air Pollution By County</h2>
+
+        <div id="bubble"></div>
+      </div>
+      <div class= "column side">
+        <h2> </h2>
+      </div>
+    </div>
+  </div>
+    <!--**************************************************************************************************************************************************************************************-->
+    <!-- 
+    <div id="ourNavbar" class="container-fluid"></div>
+      <div class = "text-center">
+        <h2 id="ghgfacility" >GHG Map of the Facilities</h2>
+        <p>.......</p>
+      </div> -->
+
+    <!--**************************************************************************************************************************************************************************************-->
+    <!--**************************************************************************************************************************************************************************************-->
+
+    <!-- Consequences Section -->
+
+
+    <!-- <div id="ourNavbar" class="container-fluid"></div>
+      <div class = "text-center">
+        <h2 id="conshealth" > Health Concerns and Public Safety </h2>
+        <p>.......</p>
+      </div> -->
+
+    <!--**************************************************************************************************************************************************************************************-->
+
+    <!-- <div id="ourNavbar" class="container-fluid"></div>
+      <div class = "text-center">
+        <h2 id="consgov"> Governmental Policies and Regulations </h2>
+        <p>.......</p>
+      </div> -->
+
+
+    <!--**************************************************************************************************************************************************************************************-->
+    <!--**************************************************************************************************************************************************************************************-->
+
+    <!-- About Section -->
+    <div class="row">
+      <div class= "column side">
+        <h2> </h2>
+      </div>
+      
+      <div class="column middle">
+
+    <div id="ourNavbar" class="container-fluid"></div>
+      <div class = "text-center">
+        <h2 id="abtsite"> Learn to Navigate the Website </h2>
+        <p>.......</p>
+      </div>
+    <!--**************************************************************************************************************************************************************************************-->
+
+    <div id="ourNavbar" class="container-fluid"></div>
+      <div class = "text-center">
+        <h2 id="abtus" > Team Behind the Scene </h2>
+        <p class="lead"><strong> We are Group 1: Solid elements who care and love this planet. <br> Forever Bending the Elements at Will! </strong></p>
+        <img src="../datasets/images/fire.jpeg">
+        <h2> Megan </h2>
+        <img src="../datasets/images/water.png">
+         <h2> Dipesh </h2>
+        <img src="../../datasets/images/air.png">
+        <h2> Andrew </h2>
+        <img src="../../datasets/images/earth.jpeg">
+        <h2> Anthony </h2>
+      </div>
+      <div class= "column side">
+        <h2> </h2>
+      </div>
+    </div>
+  </div>
+<!--**************************************************************************************************************************************************************************************-->
+<!--**************************************************************************************************************************************************************************************-->
+<!--**************************************************************************************************************************************************************************************-->
+<!--**************************************************************************************************************************************************************************************-->
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="https://d3js.org/d3.v6.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="{{url_for('static', filename='js/app.js')}}"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+      integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+      integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdn.anychart.com/releases/8.10.0/js/anychart-base.min.js"></script>
+  </body>
+</html>
+
