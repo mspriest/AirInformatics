@@ -5,6 +5,43 @@ function toTitleCase(str) {
   });
 }
 
+//Reference: https://github.com/ahop92/interactive-visualizations-challenge
+function populateYears(yearList, userYear) {
+  var yearMenu = d3.select("#selYear");
+  yearMenu.html("");
+  yearMenu
+    .append("option")
+    .attr("id", "selectedYearOption")
+    .attr("disabled", true)
+    .text(userYear);
+
+  yearList.forEach((row) => {
+    if (row != userYear) {
+      yearMenu.append("option").text(row);
+      // console.log(row);
+    }
+  });
+}
+
+function populateCounties(countyData, userCounty) {
+  var countyMenu = d3.select("#selCounty");
+  countyMenu.html("");
+  countyMenu
+    .append("option")
+    .attr("id", "selectedCountyOption")
+    .attr("disabled", true)
+    .text(userCounty.toUpperCase());
+
+  // console.log(countyData);
+
+  countyData["countytotals"].forEach((row) => {
+    if (row["countyname"] != userCounty) {
+      countyMenu.append("option").text(row["countyname"].toUpperCase());
+      // console.log(row);
+    }
+  });
+}
+
 //Reference: https://medium.com/@asadise/sorting-a-json-array-according-one-property-in-javascript-18b1d22cd9e9
 function sortBy(prop) {
   return function (a, b) {
@@ -208,8 +245,8 @@ function facilityTotals(data_year) {
   // console.log(unique_parents);
   // console.log(unique_parent_counties);
 
-  Reference: //developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/indexOf
-  https: j = 0;
+  //developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/indexOf
+  Reference: https: j = 0;
   unique_facilities.forEach((facility) => {
     // console.log(`Iteration for ${parent}`);
     i = 0;
@@ -245,7 +282,7 @@ function facilityTotals(data_year) {
   facility_totals["facilitytotals"] = facility_totals["facilitytotals"].sort(
     sortBy("countyname")
   );
-  console.log(facility_totals);
+  // console.log(facility_totals);
   return facility_totals;
 }
 
@@ -276,7 +313,18 @@ function buildStaticBarCounties(county_totals) {
     y: y_values,
     orientation: "h",
     marker: {
-      color: ["red", "red", "rgb(215,180,243)", "rgb(215,180,243)", "rgb(215,180,243)", "rgb(215,180,243)", "rgb(215,180,243)", "rgb(215,180,243)", "rgb(215,180,243)", "rgb(215,180,243)"]
+      color: [
+        "red",
+        "red",
+        "rgb(215,180,243)",
+        "rgb(215,180,243)",
+        "rgb(215,180,243)",
+        "rgb(215,180,243)",
+        "rgb(215,180,243)",
+        "rgb(215,180,243)",
+        "rgb(215,180,243)",
+        "rgb(215,180,243)",
+      ],
     },
     type: "bar",
   };
@@ -331,7 +379,13 @@ function buildStaticBarParents(parent_totals) {
     x: y_values,
     y: x_values,
     marker: {
-      color: ["red","red","rgb(215,180,243)","rgb(215,180,243)","rgb(215,180,243)"]
+      color: [
+        "red",
+        "red",
+        "rgb(215,180,243)",
+        "rgb(215,180,243)",
+        "rgb(215,180,243)",
+      ],
     },
     type: "bar",
   };
@@ -362,80 +416,118 @@ function buildStaticBarParents(parent_totals) {
 }
 
 //Reference: https://docs.anychart.com/Basic_Charts/Pie_Chart
-function buildStaticPie(facility_data) {
-  var county1 = [];
-  var county2 = [];
+function buildStaticPie(facility_data, countyName) {
+  var county1 = [
+    {
+      values: [],
+      labels: [],
+      text: [],
+      type: "pie",
+      hole: 0.5,
+      hovertemplate: [],
+      automargin: true,
+    },
+  ];
+  var county2 = [
+    {
+      values: [],
+      labels: [],
+      type: "pie",
+      hole: 0.6,
+      hovertemplate: [],
+    },
+  ];
 
-  // console.log(county1 instanceof Object);
+  // console.log(typeof chart1);
+  // console.log(typeof chart2);
+  // console.log(facility_data);
+
+  var parentname = "";
+  var countyNameCheck = 0;
+  var countypiecontainer = d3.select("#countypie1");
+  countypiecontainer.html("");
 
   facility_data["facilitytotals"].forEach((row) => {
     // console.log(row);
 
+    if (countyName === row["countyname"]) {
+      countyNameCheck = 1;
+    }
+
     switch (row["countyname"]) {
-      case "indiana":
-        county1.push({ x: row["parentname"], value: row["co2total"], text: row["facilityname"]});
+      case countyName:
+        parentname = row["parentname"].replaceAll(";", "<br>");
+        // console.log(parentname);
+
+        // https://stackoverflow.com/questions/57973985/how-to-break-a-long-line-in-a-hover-text-plotly
+        county1[0]["values"].push(row["co2total"]);
+        county1[0]["labels"].push(row["parentname"]);
+        county1[0]["hovertemplate"].push(
+          `<b>${row["facilityname"]}</b><br><br>` +
+            `<b>Parent Company:</b> ${parentname}<br>` +
+            `<b align="left">Total Emissions:</b> ${row["co2total"]}<br>` +
+            `<extra></extra>`
+        );
+
         break;
 
-      case "armstrong":
-        county2.push({ x: row["parentname"], value: row["co2total"], text: row["facilityname"]});
-        break;
     }
   });
 
-  console.log(county1);
-  // console.log(county2);
+  // console.log(countyName, countyNameCheck, county1[0]["values"]);
 
-  // create a chart and set the data
-  chart1 = anychart.pie(county1);
-  chart1.title("Indiana County Facility Breakdown");
-  chart1.fill("aquastyle");
-  chart1.outline(true);
-  chart1.innerRadius("30%");
-  chart1.selected().width("3");
+  if (
+    countyNameCheck === 0 ||
+    (county1[0]["values"].length === 1 && county1[0]["values"][0] === 0)
+  ) {
 
-  // tooltip settings
-  var tooltip1 = chart1.tooltip();
-  tooltip1.positionMode("point");
-  tooltip1.format("CO2 Volume: <b>{%value}</b> <br>Facility Name: <b>{%text}</b>");
+    countyName = `No facility data present for ${countyName.replace(
+      countyName.charAt(0),
+      countyName.charAt(0).toUpperCase()
+    )} County`
 
-  // enable HTML for tooltips
-  chart1.tooltip().useHtml(true);
+  }
 
-  // set the container id
-  chart1.container("countypie1");
+  // console.log(county1);
 
-  // initiate drawing the chart
-  chart1.draw();
+  var layout1 = {
+    height: 500,
+    width: 550,
+    showlegend: false,
+    title: "CO2 Emissions by Facility Name in County",
+    annotations: [
+      {
+        font: { size: 20 },
+        showarrow: false,
+        text: countyName.toUpperCase(),
+      },
+    ],
+  };
 
-  // create a chart and set the data
-  chart2 = anychart.pie(county2);
-  chart2.title("Armstrong County Facility Breakdown");
-  chart2.fill("aquastyle");
-  chart2.outline(true);
-  chart2.innerRadius("30%");
-  chart2.selected().width("3");
-
-  // tooltip settings
-  var tooltip2 = chart2.tooltip();
-  tooltip2.positionMode("point");
-  tooltip2.format("CO2 Volume: <b>{%value}</b> <br>Facility Name: <b>{%text}</b>");
-
-  // enable HTML for tooltips
-  chart2.tooltip().useHtml(true);
-
-  // set the container id
-  chart2.container("countypie2");
-
-  // initiate drawing the chart
-  chart2.draw();
+  Plotly.newPlot("countypie1", county1, layout1);
+  // Plotly.newPlot("countypie2", county2, layout1);
 }
 
-function buildGHGAnalysis() {
+function buildGHGAnalysis(userYear, userCounty) {
   /* data route */
   const url = "/api/GHGdata";
   d3.json(url)
     .then(function (ghgcountydata) {
       // console.log(ghgcountydata);
+
+      console.log(userYear);
+      yearArray = [
+        "2019",
+        "2018",
+        "2017",
+        "2016",
+        "2015",
+        "2014",
+        "2013",
+        "2012",
+        "2011",
+        "2010",
+      ];
 
       data_2019 = [];
       data_2018 = [];
@@ -447,6 +539,7 @@ function buildGHGAnalysis() {
       data_2012 = [];
       data_2011 = [];
       data_2010 = [];
+      selected_year_data = [];
 
       // For loop to push data specific variables for access by year
       Object.entries(ghgcountydata).forEach((object, key) => {
@@ -500,34 +593,63 @@ function buildGHGAnalysis() {
       //   }
       // });
 
-      county_totals_2019 = countyTotals(data_2019);
-      parent_totals_2019 = parentTotals(data_2019);
-      facility_totals_2019 = facilityTotals(data_2019);
-      // county_totals_2018 = countyTotals(data_2018);
-      // parent_totals_2018 = parentTotals(data_2018);
-      // county_totals_2017 = countyTotals(data_2017);
-      // parent_totals_2017 = parentTotals(data_2017);
-      // county_totals_2016 = countyTotals(data_2016);
-      // parent_totals_2016 = parentTotals(data_2016);
-      // county_totals_2015 = countyTotals(data_2015);
-      // parent_totals_2015 = parentTotals(data_2015);
-      // county_totals_2014 = countyTotals(data_2014);
-      // parent_totals_2014 = parentTotals(data_2014);
-      // county_totals_2013 = countyTotals(data_2013);
-      // parent_totals_2013 = parentTotals(data_2013);
-      // county_totals_2012 = countyTotals(data_2012);
-      // parent_totals_2012 = parentTotals(data_2012);
-      // county_totals_2011 = countyTotals(data_2011);
-      // parent_totals_2011 = parentTotals(data_2011);
-      // county_totals_2010 = countyTotals(data_2010);
-      // parent_totals_2010 = parentTotals(data_2010);
+      switch (userYear) {
+        case "2010":
+          selected_year_data = data_2010;
+          break;
 
-      // console.log(county_totals_2019);
-      // console.log(parent_totals_2019);
+        case "2011":
+          selected_year_data = data_2011;
+          break;
 
-      buildStaticBarCounties(county_totals_2019);
-      buildStaticBarParents(parent_totals_2019);
-      buildStaticPie(facility_totals_2019);
+        case "2012":
+          selected_year_data = data_2012;
+          break;
+
+        case "2013":
+          selected_year_data = data_2013;
+          break;
+
+        case "2014":
+          selected_year_data = data_2014;
+          break;
+
+        case "2015":
+          selected_year_data = data_2015;
+          break;
+
+        case "2016":
+          selected_year_data = data_2016;
+          break;
+
+        case "2017":
+          selected_year_data = data_2017;
+          break;
+
+        case "2018":
+          selected_year_data = data_2018;
+          break;
+
+        case "2019":
+          selected_year_data = data_2019;
+          break;
+      }
+
+      // console.log(selected_year_data);
+
+      county_totals = countyTotals(selected_year_data);
+      parent_totals = parentTotals(selected_year_data);
+      facility_totals = facilityTotals(selected_year_data);
+
+      populateYears(yearArray, userYear);
+      populateCounties(county_totals, userCounty);
+
+      // console.log(county_totals);
+      // console.log(facility_totals);
+
+      buildStaticBarCounties(county_totals);
+      buildStaticBarParents(parent_totals);
+      buildStaticPie(facility_totals, userCounty);
     })
     .catch((e) => {
       console.log(e);
@@ -652,12 +774,28 @@ function buildAirAnalysis() {
 
       var countyX = countiesUnique.reverse().slice(23).reverse();
       var countyY = NAAQSSum.reverse().slice(23).reverse();
-      var colors = ["blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "red", "blue"]
+      var colors = [
+        "blue",
+        "blue",
+        "blue",
+        "blue",
+        "blue",
+        "blue",
+        "blue",
+        "blue",
+        "blue",
+        "blue",
+        "blue",
+        "blue",
+        "blue",
+        "red",
+        "blue",
+      ];
       var trace1 = {
         x: countyX,
         y: countyY,
         type: "bar",
-        marker: {color : colors}
+        marker: { color: colors },
       };
 
       var data = [trace1];
@@ -738,7 +876,7 @@ function buildAirTimeline() {
 }
 
 console.log("app.js is accessed.");
-buildGHGAnalysis();
+buildGHGAnalysis("2019", "armstrong");
 buildAirTimeline();
 buildAirAnalysis();
 
@@ -782,7 +920,7 @@ svg
 d3.csv(
   "https://raw.githubusercontent.com/mspriest/bubblechart2018/main/2018_bubbledata.csv"
 ).then(function (data) {
-  console.log(data);
+  // console.log(data);
   // Add X axis
   const x = d3.scaleLinear().domain([0, 19000000]).range([0, width]);
   svg
@@ -848,10 +986,10 @@ d3.csv(
     .attr("r", (d) => z(d.PersonDays))
     .style("fill", function (d) {
       if (d.County === "armstrong") {
-          return "#FF0000"
+        return "#FF0000";
       } else if (d.County === "indiana") {
-          return "#FF0000"
-      } 
+        return "#FF0000";
+      }
     })
 
     // -3- Trigger the functions
@@ -859,3 +997,16 @@ d3.csv(
     .on("mousemove", moveTooltip)
     .on("mouseleave", hideTooltip);
 });
+
+function countyOptionChanged(county) {
+  year = d3.select("#selectedYearOption").text();
+  // console.log(year);
+  buildGHGAnalysis(year, county.toLowerCase());
+}
+
+function yearOptionChanged(year) {
+  county = d3.select("#selectedCountyOption").text().toLowerCase();
+  // console.log(county);
+  buildGHGAnalysis(year, county);
+  // console.log(year);
+}
