@@ -313,18 +313,7 @@ function buildStaticBarCounties(county_totals) {
     y: y_values,
     orientation: "h",
     marker: {
-      color: [
-        "red",
-        "red",
-        "rgb(215,180,243)",
-        "rgb(215,180,243)",
-        "rgb(215,180,243)",
-        "rgb(215,180,243)",
-        "rgb(215,180,243)",
-        "rgb(215,180,243)",
-        "rgb(215,180,243)",
-        "rgb(215,180,243)",
-      ],
+      color: "#002366"
     },
     type: "bar",
   };
@@ -332,19 +321,21 @@ function buildStaticBarCounties(county_totals) {
   var data = [trace];
 
   var layout = {
-    title: `Top 10 Counties in CO2 Emissions for 2019`,
+    title: `Top 10 Counties in CO2 Emissions`,
     xaxis: {
       title: "CO2 Emissions in (Metric Tons)",
     },
+    font: {
+      family: 'Arial',
+      size: '14',
+      color: 'black'},
     yaxis: {
       autorange: "reversed",
       title: "",
     },
-    autosize: false,
-    width: 1500,
-    height: 500,
+    autosize: true,
     margin: {
-      l: 200,
+      l: 120,
       r: 50,
       b: 100,
       t: 100,
@@ -379,13 +370,7 @@ function buildStaticBarParents(parent_totals) {
     x: y_values,
     y: x_values,
     marker: {
-      color: [
-        "red",
-        "red",
-        "rgb(215,180,243)",
-        "rgb(215,180,243)",
-        "rgb(215,180,243)",
-      ],
+      color: "#FA8072",
     },
     type: "bar",
   };
@@ -393,20 +378,22 @@ function buildStaticBarParents(parent_totals) {
   var data = [trace];
 
   var layout = {
-    title: `Top 5 Parent Companies' CO2 Emissions for 2019`,
+    title: `Top 5 Parent Companies' <br>CO2 Emissions`,
     xaxis: {
       title: "",
     },
     yaxis: {
-      title: "CO2 Emissions in (Metric Tons)",
+      title: `CO2 Emissions <br>in (Metric Tons)`,
     },
-    autosize: false,
-    width: 500,
-    height: 500,
+    font: {
+      family: 'Arial',
+      size: '14',
+      color: 'black'},
+    autosize:true,
     margin: {
-      l: 50,
+      l: 100,
       r: 50,
-      b: 100,
+      b: 200,
       t: 100,
       pad: 4,
     },
@@ -426,6 +413,9 @@ function buildStaticPie(facility_data, countyName) {
       hole: 0.5,
       hovertemplate: [],
       automargin: true,
+      marker: {
+        colors: ["#002366", "#0F52BA", "#FA8072", "#FFDAB9"]
+      },
     },
   ];
   var county2 = [
@@ -491,10 +481,14 @@ function buildStaticPie(facility_data, countyName) {
   // console.log(county1);
 
   var layout1 = {
-    height: 500,
-    width: 550,
+    autosize: true,
     showlegend: false,
-    title: "CO2 Emissions by Facility Name in County",
+    title: `CO2 Emissions<br>by Facility Name in County`,
+    font: {
+      family: 'Arial',
+      size: '18',
+      color: 'black',
+    },
     annotations: [
       {
         font: { size: 20 },
@@ -774,23 +768,7 @@ function buildAirAnalysis() {
 
       var countyX = countiesUnique.reverse().slice(23).reverse();
       var countyY = NAAQSSum.reverse().slice(23).reverse();
-      var colors = [
-        "blue",
-        "blue",
-        "blue",
-        "blue",
-        "blue",
-        "blue",
-        "blue",
-        "blue",
-        "blue",
-        "blue",
-        "blue",
-        "blue",
-        "blue",
-        "red",
-        "blue",
-      ];
+      var colors = "FA8072";
       var trace1 = {
         x: countyX,
         y: countyY,
@@ -802,8 +780,20 @@ function buildAirAnalysis() {
 
       var layout = {
         title: "Air Quality by County, 2009-2018",
+        font: {
+          family: 'Arial',
+          size: '18',
+          color: 'black',
+        },
         xaxis: { title: "County" },
         yaxis: { title: "Days over NAAQS" },
+        margin: {
+          l: 120,
+          r: 50,
+          b: 150,
+          t: 100,
+          pad: 4,
+        },
       };
 
       Plotly.newPlot("top15air", data, layout);
@@ -861,12 +851,18 @@ function buildAirTimeline() {
       x: yearsList,
       y: NAAQSSum,
       type: "line",
+      color: "#0F52BA"
     };
 
     var data = [trace1];
 
     var layout = {
       title: "PA Air Quality, 2009-2018",
+      font: {
+        family: 'Arial',
+        size: '18',
+        color: 'black',
+      },
       xaxis: { title: "Year" },
       yaxis: { title: "Days over NAAQS" },
     };
@@ -884,7 +880,7 @@ buildAirAnalysis();
 ///Reference: https://www.d3-graph-gallery.com/graph/bubble_tooltip.html///
 
 // set the dimensions and margins of the graph
-const margin = { top: 10, right: 30, bottom: 30, left: 50 },
+const margin = { top: 30, right: 30, bottom: 50, left: 50 },
   width = 1000 - margin.left - margin.right,
   height = 420 - margin.top - margin.bottom;
 
@@ -897,21 +893,30 @@ const svg = d3
   .append("g")
   .attr("transform", `translate(${margin.left},${margin.top})`);
 
+// add chart title
+  svg.append("text")
+  .attr("x", (width / 2))             
+  .attr("y", 0 - (margin.top / 2))
+  .attr("text-anchor", "middle")  
+  .style("font-size", "20px") 
+  .style("font-weight", "bold")  
+  .text("GHG Emissions vs. Air Pollution (2018)");
+
 //Add x axis label
 svg
-  .append("text")
+  .append("text").style("font", "18px arial")
   .attr("class", "x label")
   .attr("text-anchor", "end")
   .attr("x", width - 400)
-  .attr("y", height + 30)
+  .attr("y", height + 45)
   .text("2018 Total GHG Emissions (CO2e)");
 
 // Add y axis label
 svg
-  .append("text")
+  .append("text").style("font", "18px arial")
   .attr("class", "y label")
   .attr("text-anchor", "end")
-  .attr("y", -40)
+  .attr("y", -50)
   .attr("dy", ".75em")
   .attr("transform", "rotate(-90)")
   .text("Air Pollution: # of Days Over Standard (NAAQS)");
@@ -925,20 +930,19 @@ d3.csv(
   const x = d3.scaleLinear().domain([0, 19000000]).range([0, width]);
   svg
     .append("g")
+    .style("font", "14px arial")
     .attr("transform", `translate(0, ${height})`)
     .call(d3.axisBottom(x));
 
   // Add Y axis
   const y = d3.scaleLinear().domain([0, 20]).range([height, 0]);
-  svg.append("g").call(d3.axisLeft(y));
+  svg
+    .append("g")
+    .style("font", "14px arial")
+    .call(d3.axisLeft(y));
 
   // Add a scale for bubble size
   const z = d3.scaleLinear().domain([20000, 16000000]).range([10, 40]);
-
-  // Add a scale for bubble color
-  // const myColor = d3.scaleOrdinal()
-  //   .domain(["Asia", "Europe", "Americas", "Africa", "Oceania"])
-  //   .range(d3.schemeSet2);
 
   // -1- Create a tooltip div that is hidden by default:
   const tooltip = d3
@@ -946,10 +950,10 @@ d3.csv(
     .append("div")
     .style("opacity", 0)
     .attr("class", "tooltip")
-    .style("background-color", "purple")
+    .style("background-color", "#FFDAB9")
     .style("border-radius", "5px")
     .style("padding", "10px")
-    .style("color", "white");
+    .style("color", "black");
 
   // -2- Create 3 functions to show / update (when mouse move but stay on same circle) / hide the tooltip
   const showTooltip = function (event, d) {
@@ -984,13 +988,6 @@ d3.csv(
     .attr("cx", (d) => x(d.GHG_2018))
     .attr("cy", (d) => y(d.NAAQS))
     .attr("r", (d) => z(d.PersonDays))
-    .style("fill", function (d) {
-      if (d.County === "armstrong") {
-        return "#FF0000";
-      } else if (d.County === "indiana") {
-        return "#FF0000";
-      }
-    })
 
     // -3- Trigger the functions
     .on("mouseover", showTooltip)

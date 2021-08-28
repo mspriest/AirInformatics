@@ -1,11 +1,15 @@
+h5 {
+  font-size: 18px;
+  color: 'black';
+}
 .bubbles {
     stroke-width: 2px;
-    stroke: white;
-    fill: rgb(197, 108, 197);
-    opacity: .6;
+    stroke: #ffffff;
+    fill: #0F52BA;
+    opacity: .8;
   }
   .bubbles:hover {
-    stroke: darkmagenta;
+    stroke: #FA8072;
   }
 /* for creating three columns just for styling the web display */
   .column {
