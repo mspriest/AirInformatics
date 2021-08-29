@@ -1,0 +1,22 @@
+Dataset Names,Land Classifier Avg. Accuracy,CO2 Rate Avg. Accuracy
+Voter Data,0.5,0.4925
+General Population Data,0.6325,0.485
+Municipal Data,0.6837500000000001,0.49875
+Age Data,0.69625,0.60125
+Race/Ethnicity Data,0.71125,0.4675
+Family Unit Data,0.66375,0.645
+Housing Unit Data,0.6599999999999999,0.425
+Housing Affordability Data,0.7224999999999999,0.5675
+Household Income Data,0.60125,0.43
+Economic Data,0.6687500000000001,0.42625
+Public Program Data,0.69,0.56875
+Disability Data,0.69875,0.57
+Education Data,0.63875,0.6725
+Employment Data,0.6287499999999999,0.37625
+Birth Data,0.6224999999999999,0.3975
+Death Data,0.625,0.575
+Medical Care Data,0.6224999999999999,0.485
+Policing Data,0.61875,0.45375
+Highway and Driving Data,0.64125,0.49375
+Farm Data,0.55875,0.61375
+Randomly Associated Test Data,0.57625,0.32375
