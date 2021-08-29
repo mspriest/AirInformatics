@@ -4,14 +4,16 @@ from flask import (
     Flask,
     render_template,
     jsonify,
+    abort,
     request,
     redirect)
+from jinja2 import TemplateNotFound
 
 from sqlalchemy import text
 ###################################################
 # Flask Setup
 #################################################
-app = Flask(__name__)
+app = Flask(__name__, template_folder="templates")
 
 DB = "superclean_facilities.db"
 #################################################
@@ -56,18 +58,37 @@ def get_all_air( json_str = False ):
     return all_air_json
 
 # create route that renders index.html template
+# @app.route("/", defaults={"page": "index"})
+# @app.route('/<page>')
+# def html_lookup(page):
+#     try: 
+#         return render_template('{}.html'.format(page))
+#     except TemplateNotFound:
+#         abort(404)
 @app.route("/")
 def home():
-    return render_template("index.html")
-
+    return render_template('index.html')
+@app.route("/about/")
+def about():
+    return render_template("about.html")
+@app.route("/background/")
+def background():
+    return render_template("background.html")
+@app.route("/action/")
+def action():
+    return render_template("action.html")
 @app.route("/api/GHGdata")
 def ghgdata():
-    return get_all_data()
-
+    return get_all_data() 
 @app.route("/api/AIRdata")
 def airdata():
     return get_all_air()
-
 if __name__ == "__main__":
     app.run(debug=True)
+
+
+
+
+
+
     
