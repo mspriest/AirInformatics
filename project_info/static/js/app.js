@@ -313,7 +313,7 @@ function buildStaticBarCounties(county_totals) {
     y: y_values,
     orientation: "h",
     marker: {
-      color: "#002366"
+      color: "#002366",
     },
     type: "bar",
   };
@@ -326,18 +326,19 @@ function buildStaticBarCounties(county_totals) {
       title: "CO2 Emissions in (Metric Tons)",
     },
     font: {
-      family: 'Arial',
-      size: '14',
-      color: 'black'},
+      family: "Arial",
+      size: "14",
+      color: "black",
+    },
     yaxis: {
       autorange: "reversed",
       title: "",
     },
     autosize: true,
     margin: {
-      l: 120,
+      l: 150,
       r: 50,
-      b: 100,
+      b: 200,
       t: 100,
       pad: 4,
     },
@@ -386,14 +387,15 @@ function buildStaticBarParents(parent_totals) {
       title: `CO2 Emissions <br>in (Metric Tons)`,
     },
     font: {
-      family: 'Arial',
-      size: '14',
-      color: 'black'},
-    autosize:true,
+      family: "Arial",
+      size: "14",
+      color: "black",
+    },
+    autosize: true,
     margin: {
       l: 100,
-      r: 50,
-      b: 200,
+      r: 90,
+      b: 450,
       t: 100,
       pad: 4,
     },
@@ -414,7 +416,14 @@ function buildStaticPie(facility_data, countyName) {
       hovertemplate: [],
       automargin: true,
       marker: {
-        colors: ["#002366", "#0F52BA", "#FA8072", "#FFDAB9"]
+        colors: ["#002366", "#0F52BA", "#FA8072", "#FFDAB9"],
+      },
+      margin: {
+        l: 100,
+        r: 50,
+        b: 300,
+        t: 200,
+        pad: 4,
       },
     },
   ];
@@ -460,7 +469,6 @@ function buildStaticPie(facility_data, countyName) {
         );
 
         break;
-
     }
   });
 
@@ -470,12 +478,10 @@ function buildStaticPie(facility_data, countyName) {
     countyNameCheck === 0 ||
     (county1[0]["values"].length === 1 && county1[0]["values"][0] === 0)
   ) {
-
     countyName = `No facility data present for ${countyName.replace(
       countyName.charAt(0),
       countyName.charAt(0).toUpperCase()
-    )} County`
-
+    )} County`;
   }
 
   // console.log(county1);
@@ -485,9 +491,9 @@ function buildStaticPie(facility_data, countyName) {
     showlegend: false,
     title: `CO2 Emissions<br>by Facility Name in County`,
     font: {
-      family: 'Arial',
-      size: '18',
-      color: 'black',
+      family: "Arial",
+      size: "18",
+      color: "black",
     },
     annotations: [
       {
@@ -781,9 +787,9 @@ function buildAirAnalysis() {
       var layout = {
         title: "Air Quality by County, 2009-2018",
         font: {
-          family: 'Arial',
-          size: '18',
-          color: 'black',
+          family: "Arial",
+          size: "18",
+          color: "black",
         },
         xaxis: { title: "County" },
         yaxis: { title: "Days over NAAQS" },
@@ -851,7 +857,7 @@ function buildAirTimeline() {
       x: yearsList,
       y: NAAQSSum,
       type: "line",
-      color: "#0F52BA"
+      color: "#0F52BA",
     };
 
     var data = [trace1];
@@ -859,9 +865,9 @@ function buildAirTimeline() {
     var layout = {
       title: "PA Air Quality, 2009-2018",
       font: {
-        family: 'Arial',
-        size: '18',
-        color: 'black',
+        family: "Arial",
+        size: "18",
+        color: "black",
       },
       xaxis: { title: "Year" },
       yaxis: { title: "Days over NAAQS" },
@@ -894,17 +900,19 @@ const svg = d3
   .attr("transform", `translate(${margin.left},${margin.top})`);
 
 // add chart title
-  svg.append("text")
-  .attr("x", (width / 2))             
-  .attr("y", 0 - (margin.top / 2))
-  .attr("text-anchor", "middle")  
-  .style("font-size", "20px") 
-  .style("font-weight", "bold")  
+svg
+  .append("text")
+  .attr("x", width / 2)
+  .attr("y", 0 - margin.top / 2)
+  .attr("text-anchor", "middle")
+  .style("font-size", "20px")
+  .style("font-weight", "bold")
   .text("GHG Emissions vs. Air Pollution (2018)");
 
 //Add x axis label
 svg
-  .append("text").style("font", "18px arial")
+  .append("text")
+  .style("font", "18px arial")
   .attr("class", "x label")
   .attr("text-anchor", "end")
   .attr("x", width - 400)
@@ -913,7 +921,8 @@ svg
 
 // Add y axis label
 svg
-  .append("text").style("font", "18px arial")
+  .append("text")
+  .style("font", "18px arial")
   .attr("class", "y label")
   .attr("text-anchor", "end")
   .attr("y", -50)
@@ -936,10 +945,7 @@ d3.csv(
 
   // Add Y axis
   const y = d3.scaleLinear().domain([0, 20]).range([height, 0]);
-  svg
-    .append("g")
-    .style("font", "14px arial")
-    .call(d3.axisLeft(y));
+  svg.append("g").style("font", "14px arial").call(d3.axisLeft(y));
 
   // Add a scale for bubble size
   const z = d3.scaleLinear().domain([20000, 16000000]).range([10, 40]);
