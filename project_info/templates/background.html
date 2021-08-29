@@ -40,29 +40,26 @@
     </div>
 
     <div class="row">
-      <div class="col-md-2">
+      <div class="col-md-3">
         <div class="well">
           <h5>Select Desired Year for PA CO2 Data:</h5>
           <select id="selYear" align="right" onchange="yearOptionChanged(this.value)">
           </select>
+          <h5>County Name:</h5>
+          <select id="selCounty" align="right" onchange="countyOptionChanged(this.value)">
+          </select>
         </div>
       </div>
-      <div class="col-md-10">
+      <div class="col-md-9">
         <div id="countybar"></div>
       </div>
 
       <div class="row">
-        <div class="col-md-3">
-          <div class="well">
-            <h5>County Name:</h5>
-            <select id="selCounty" align="right" onchange="countyOptionChanged(this.value)">
-            </select>
-          </div>
         </div>
-        <div class="col-md-5">
+        <div class="col-md-6">
           <div id="countypie1"></div>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-6">
           <div id="parentbar"></div>
         </div>
       
