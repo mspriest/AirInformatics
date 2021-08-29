@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Air Quality & GHG Emissions</title>
+    <link rel="stylesheet" href="../static/css/style.css"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<div id="header-text">
+    <h1><strong id="top-title"> Pennsylvania's Air Quality and GHG Emissions  </strong></h1>
+    <p id="slogan"> Explore, Discover, and Take Action! </p>
+</div>
+<body>
+    <div class="nav_bar">
+        <ul>
+            <li><a href="/" >Home</a></li>
+            <li><a href="/background/" id="onlink">Background</a></li>
+            <li><a href="/action/">Take-Action</a></li>
+            <li><a href="/about/">About</a></li>
+        </ul>
+    </div>
+    <div class="main_container">
+        <p> We are building off of our investigation of carbon emissions and climate concerns starting from the <br> World View to United States and to Pennsylvania by County. <br> <br>   
+        </p> 
+         <!--plotly code start here-- -->
+    <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-6">
+        <div id="paair"></div>
+      </div>
+      <div class="col-md-6">
+        <div id="top15air"></div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-3">
+        <div class="well">
+          <h5>Select Desired Year for PA CO2 Data:</h5>
+          <select id="selYear" align="right" onchange="yearOptionChanged(this.value)">
+          </select>
+          <h5>County Name:</h5>
+          <select id="selCounty" align="right" onchange="countyOptionChanged(this.value)">
+          </select>
+        </div>
+      </div>
+      <div class="col-md-9">
+        <div id="countybar"></div>
+      </div>
+
+      <div class="row">
+        </div>
+        <div class="col-md-6">
+          <div id="countypie1"></div>
+        </div>
+        <div class="col-md-6">
+          <div id="parentbar"></div>
+        </div>
+      
+      <div class="row">
+        <div class="col-md-12">
+          <div id="bubble"></div>
+        </div>
+      </div>
+<!-- ---------------------------------------------- -->
+       
+       
+       
+        <p>
+             <br> We have utilized two datasets: Air Pollution Data from <a
+              href="https://www.phaim1.health.pa.gov/EDD/WebForms/AirQualityCnty.aspx" target="_blank"> EDDIE </a> and
+            Facility Data from the<a href="https://ghgdata.epa.gov/ghgp/main.do" , target="_blank"> EPA </a> 
+            <br> to investigate and guide our motivation for the study. 
+          </p>    
+
+    </div>
+        <!-- scripts -->
+        <script src="https://d3js.org/d3.v5.min.js"></script>
+        <script src="https://d3js.org/d3.v6.js"></script>
+        <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+        <script src="{{url_for('static', filename='js/app.js')}}"></script>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+          integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+          crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+          integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+          crossorigin="anonymous"></script>
+          <script src="https://cdn.anychart.com/releases/8.10.0/js/anychart-base.min.js"></script>
+
+</body>
+</html>  
