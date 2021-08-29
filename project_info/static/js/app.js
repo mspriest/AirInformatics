@@ -411,6 +411,7 @@ function buildStaticPie(facility_data, countyName) {
       values: [],
       labels: [],
       text: [],
+      textinfo: 'none',
       type: "pie",
       hole: 0.5,
       hovertemplate: [],
@@ -465,6 +466,7 @@ function buildStaticPie(facility_data, countyName) {
           `<b>${row["facilityname"]}</b><br><br>` +
             `<b>Parent Company:</b> ${parentname}<br>` +
             `<b align="left">Total Emissions:</b> ${row["co2total"]}<br>` +
+            `<b align="left">Percent of Total Emissions:</b> %{percent} <br>` + 
             `<extra></extra>`
         );
 
