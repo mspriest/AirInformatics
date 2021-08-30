@@ -26,11 +26,11 @@
         </ul>
     </div>
     <div class="main_container">
-        <p> We are building off of our investigation of carbon emissions and climate concerns starting from the <br> World View to United States and to Pennsylvania by County. <br> <br>   
+        <p> <strong> Explore the Relationiship between Emissions to Quality of Air in Pennsylvania.</strong> <br>    
         </p> 
-
-        <br><br> <h2> Quality of Air </h2>
-        <p> The Clear Air Act requires the Environmental Protection Agency (EPA) to set National Air Ambient Quality Stantards (NAAQS) for six principle pollutants which can be harmful to public health and the environment. <br>
+        <h2> Quality of Air </h2>
+        <p> The Clear Air Act requires the Environmental Protection Agency (<a href="https://ghgdata.epa.gov/ghgp/main.do" , target="_blank"> EPA </a>)  to set National Air Ambient Quality Stantards (<a href="https://www.epa.gov/criteria-air-pollutants/naaqs-table", target="_blank"> NAAQS </a>) for six principle pollutants which can be harmful to public and the environmental health. <br>
+          Based on the dataset from (<a href="https://www.phaim1.health.pa.gov/EDD/", target="_blank"> EDDIE </a>), 2010 was the worst year for air quality in PA and since 2014, has trended around <strong>200 days over the standard</strong> set by the NAAQS (see PA Air Quality, 2009-2018 chart). From 2009-2018, counties with the worst air quality are <strong>Philadelphia</strong> and <strong>Allegheny</strong> county (see Air Quality by County, 2009-2018 chart).
         </p>
          <!--plotly code start here-- -->
     <div class="container-fluid">
@@ -43,51 +43,38 @@
       </div>
     </div>
     <br> <h2> Breakdown of Carbon Emissions </h2> <br>
+    <p> Utilizing the Greenhouse Gas Emissions from Large Facilities dataset from the (<a href="https://ghgdata.epa.gov/ghgp/main.do" , target="_blank"> EPA </a>), from 2009-2018 <strong>Indiana</strong> and <strong>Armstrong</strong> county consistently had the largest overall carbon emissions (in 2019, nearly <strong>20M and 12M metric tons</strong> respectively). When exploring the facility emissions at the county level, it became apparent that the bulkof carbon emissions weren’t isolated to one specific facility, but rather, multiple facilities’ parent company. For instance, in 2019, Arclight Capital LLC (an energy conglomerate) accounted for nearly <strong>53.4% </strong> all CO2 emissions in Indiana County and <strong>95.8%</strong> of all emissions in Armstrong County. <br> </p>
     <div class="row">
-      <div class="col-md-3">
-        <div class="well">
-          <h5>Select Desired Year for PA CO2 Data:</h5>
-          <select id="selYear" align="right" onchange="yearOptionChanged(this.value)">
-          </select>
-          <h5>County Name:</h5>
-          <select id="selCounty" align="right" onchange="countyOptionChanged(this.value)">
-          </select>
-        </div>
-      </div>
-      <div class="col-md-9">
+      <div class="column" style="width: 43%; clear: left;">
         <div id="countybar"></div>
       </div>
-
-      <div class="row">
+      <div class="column" style="width: 13%; padding: 2px;">
+        <div class="well">
+          <h5>Select Desired Year:</h5>
+          <select id="selYear" style="position: relative;" onchange="yearOptionChanged(this.value)">
+          </select>
+          <h5>County Name:</h5>
+          <select id="selCounty" style="position: relative;" onchange="countyOptionChanged(this.value)">
+          </select>
         </div>
-        <div class="col-md-6">
+      </div>
+        <div class="column" style="width: 43%; clear: right;" >
           <div id="countypie1"></div>
         </div>
-        <div class="col-md-6">
+       <!-- the parent company bar graph is not displaying correctly so it is collapse and won't be visible on the site.  -->
+        <div class="column" style="width:fit-content; visibility: collapse;">
           <div id="parentbar"></div>
         </div>
-      
-      <div class="row">
-        <div class="col-md-12">
+        </div>
+        <p> <br> Lastly, the GHG Emissions vs. Air Pollution chart (2018) depicts the limitations of the data and (<a href="https://www.epa.gov/criteria-air-pollutants/naaqs-table", target="_blank"> NAAQS </a>) measurement standards; out of 67 PA counties, <strong>13 counties reported zero (0) </strong>air quality days of the standard and the <strong>27 counties reported nothing</strong>. Furthermore, variation in population between counties can have a significant impact on the number of person-days above the standards. The number of days above the NAAWS x number of people = number of person-days above set standard. For example, Indiana and Armstrong have the <strong>highest overall carbon emissions but a small population size</strong>; and thus, their person-days above the standard is only at 2 days. <br> </p>
+        <div class="row">
+        <div class="column" style="width: fit-content; display:block; margin-left: auto; margin-right: auto;">
           <div id="bubble"></div>
+        </div>
+        <br> <br>
         </div>
       </div>
 <!-- ---------------------------------------------- -->
-       
-       
-       
-        <p>
-          <small>
-             <br> We have utilized two datasets: Air Pollution Data from <a
-              href="https://www.phaim1.health.pa.gov/EDD/WebForms/AirQualityCnty.aspx" target="_blank"> EDDIE </a> and
-            Facility Data from the<a href="https://ghgdata.epa.gov/ghgp/main.do" , target="_blank"> EPA </a> 
-            <br> to investigate and guide our motivation for the study. <br>
-            <br>Understanding the Units of measurement refer to <a href="https://www.epa.gov/criteria-air-pollutants/naaqs-table", target="_blank">NAAQS Table.</a>
-            The percent of days above the NAAQS is the total number of days annually with daily maximum particle (pollutant) measurement 
-            from each monitor (weighted by the number of samples within a quarter) in a county is calculated for each year.
-            If there is more than one monitor per county, then the means are averaged.</small>
-          </p>    
-
     </div>
         <!-- scripts -->
         <script src="https://d3js.org/d3.v5.min.js"></script>

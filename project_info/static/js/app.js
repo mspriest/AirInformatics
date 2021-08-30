@@ -971,16 +971,16 @@ d3.csv(
       .html(`County: ${d.County}<br>Person Days: ${d.PersonDays}`)
       // .style("left", (event.x)/2 + "px")
       // .style("top", (event.y)/2+30 + "px")
-      .style("left", d + "px")
-      .style("top", d + "px");
+      .style("left", (d3.mouse(this)[0]+30) + "px")
+      .style("top", (d3.mouse(this)[1]+30) + "px")
   };
 
   const moveTooltip = function (event, d) {
     tooltip
       // .style("left", (event.x)/2 + "px")
       // .style("top", (event.y)/2+30 + "px")
-      .style("left", d + "px")
-      .style("top", d + "px");
+      .style("left", (d3.mouse(this)[0]+30) + "px")
+      .style("top", (d3.mouse(this)[1]+30) + "px")
   };
   const hideTooltip = function (event, d) {
     tooltip.transition().duration(200).style("opacity", 0);
