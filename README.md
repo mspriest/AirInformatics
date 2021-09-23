@@ -45,9 +45,9 @@ We used k-nearest neighbors (kNN) classification to evaluate the Pennsylvania Ge
 kNN classification with the land classifier was most successful using the General Population and Age data sets (81.2% accuracy). Other sets including Voter, Municipal, Race/Ethnicity, and Education all achieved 75% accuracy. The least successful data sets included Employment (56.2%), Medical Care (62.5%), and Policing (62.5%). Classification with the rate classifier was generally less successful overall, though many of the highest accuracy scores followed the land classifier: General Population (62.5%), Age (68.8%), and Education (68.8%). 
 
 
-![image](images/iterator1.PNG)
+![image](images/iterator1output.PNG)
 
-![image](images/iterator2.PNG)
+![image](images/iterator2output.PNG)
 
 
 #### **Discovery Process**
