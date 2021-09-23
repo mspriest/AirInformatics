@@ -61,7 +61,7 @@ For the sake of investigation, we ran the Random Forest algorithm with 1000 esti
   - **RFMiterator1():** Specifically for the land based C02 classifier, receives all subsets of data, the number of iterations/times the user wants to run the Random Forest Model, and the target classifier column the user wants to use to buidl the Random Forest.
   - **RFMiterator2():*** Specifically for the rate based C02 classifier, receives all subsets of data, the number of iterations/times the user wants to run the Random Forest Model, and the target classifier column the user wants to use to buidl the Random Forest. This function specifically does this process with the land based C02 classifier.Using these three functions, we ran the RFM with 200 estimators on each subset of data 50 times. We then collected basic statistical metadata on the total number of iterations per data subset such as mean, standard deviation, variance, max, and min.
 
-![image](https://raw.github.com/mpriest/PAGHG_final/tree/main/images/runRFM.PNG)
+![a relative link](runRFM.PNG)
 
 ![image](https://raw.github.com/mpriest/PAGHG_final/tree/main/images/RFMiterator1.PNG)
 
