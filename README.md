@@ -32,9 +32,9 @@ Building off of the first project and second project, we decided to look further
 Using data from the Bureau of Economic Advancement and the Center for Rural Pennsylvania, we employed Scikit Learn's Random Forest Model on a broad variety of socioeconomic and demographic data for the state of Pennsylvania spanning the last 4-5 years. Using the classifiers Andrew defined previously, our goal was to identify if there are any underlying social factors that could point to a county's likelihood to have CO2 levels that are too high for the given standard, or if the county was likely to see an increase or decrease in CO2 levels in the future given the recent social data. The original datasets contained historical data that, at times, dated back to 1900. So, it's important to note that a limitation of this study required us to make intuitive decisions about what data to keep and what to remove. At a glance, we removed about 77 columns of outdated data if the time period was well outside the scope of our study. We only retained the most recent time stamp in a given category of data. This leads to the next limitation of the study, some categories of data use the definition of recent to mean as early as 2019 while some only had recent data up to 2017. Ideally, the data should be from the same year so the predictions coming from the model can be as accurate as possible. 
 
 
-![image](https://raw.github.com/mpriest/PAGHG_final/main/images/classifiers.PNG)
+![image](https://raw.github.com/mpriest/PAGHG_final/tree/main/images/classifiers.PNG)
 
-![image](https://raw.github.com/mpriest/PAGHG_final/main/images/datadrop.PNG)
+![image](https://raw.github.com/mpriest/PAGHG_final/tree/main/images/datadrop.PNG)
 
 
 
@@ -45,27 +45,27 @@ We used k-nearest neighbors (kNN) classification to evaluate the Pennsylvania Ge
 kNN classification with the land classifier was most successful using the General Population and Age data sets (81.2% accuracy). Other sets including Voter, Municipal, Race/Ethnicity, and Education all achieved 75% accuracy. The least successful data sets included Employment (56.2%), Medical Care (62.5%), and Policing (62.5%). Classification with the rate classifier was generally less successful overall, though many of the highest accuracy scores followed the land classifier: General Population (62.5%), Age (68.8%), and Education (68.8%). 
 
 
-![image](https://raw.github.com/mpriest/PAGHG_final/main/images/iterator1.PNG)
+![image](https://raw.github.com/mpriest/PAGHG_final/tree/main/images/iterator1.PNG)
 
-![image](https://raw.github.com/mpriest/PAGHG_final/main/images/iterator2.PNG)
+![image](https://raw.github.com/mpriest/PAGHG_final/tree/main/images/iterator2.PNG)
 
 
 #### **Discovery Process**
 
 For the sake of investigation, we ran the Random Forest algorithm with 1000 estimators on all 304 features, and then the remaining 225. The resulting accuracy was at 50% or lower in both cases. In an attempt to pare down the decision making options for the model, and with the historical data removed, we group the data into 21 subsets spanning subjects by county such as municipality, household income, education, access to public programs, employment, etc. We later learned that this attempt to reveal strong correlations with smaller subsets of data was also a trial in grappling with a phenomenon known as Simpson's Paradox within our datasets. Briefly, Simpon's Paradox is a term used to define the occurrence of a trend existing in a broad set of data, but when the data is categorized into subsets, the trend disappears. So, when the data was considered altogether there were no obvious social features that the model could use to predict the rate of C02 changing or if the C02 levels in a given county were good or bad. But, could the same be said when the data was evaluated by subset? Are there lurking variables that could help unearth a hidden trend? Taking advantage of Scikit Learn's StandardScaler and train_test_split libraries, we developed a function known as runRFM().
 
-![image](https://raw.github.com/mpriest/PAGHG_final/main/images/subgroupexample1.PNG) ![image](https://raw.github.com/mpriest/PAGHG_final/main/images/subgroupexample2.PNG)
+![image](https://raw.github.com/mpriest/PAGHG_final/tree/main/images/subgroupexample1.PNG) ![image](https://raw.github.com/mpriest/PAGHG_final/tree/main/images/subgroupexample2.PNG)
 
 
 - **runRFM():** the function receives a desired subset of data and the user selected classifier, converts the dataframe and target column into training and testing datasets, scales the training and testing data, fits the random forest to the scaled training data, and scores the model with the scaled testing data. Lastly, it outputs the importance of each feature alongside the overall accuracy of the model with the given data.We used different combinations of data subsets and the two classifiers in search of correlations between CO2 emissions and the social data. What we immediately identified is that repeated runs of the model would return different accuracies, some as high as 80% and some as low as 62% for the same combination of data and classifier.So, we developed two functions to run the RFM on all 21 subsets of data using the two different classifiers:
   - **RFMiterator1():** Specifically for the land based C02 classifier, receives all subsets of data, the number of iterations/times the user wants to run the Random Forest Model, and the target classifier column the user wants to use to buidl the Random Forest.
   - **RFMiterator2():*** Specifically for the rate based C02 classifier, receives all subsets of data, the number of iterations/times the user wants to run the Random Forest Model, and the target classifier column the user wants to use to buidl the Random Forest. This function specifically does this process with the land based C02 classifier.Using these three functions, we ran the RFM with 200 estimators on each subset of data 50 times. We then collected basic statistical metadata on the total number of iterations per data subset such as mean, standard deviation, variance, max, and min.
 
-![image](https://raw.github.com/mpriest/PAGHG_final/main/images/runRFM.PNG)
+![image](https://raw.github.com/mpriest/PAGHG_final/tree/main/images/runRFM.PNG)
 
-![image](https://raw.github.com/mpriest/PAGHG_final/main/images/RFMiterator1.PNG)
+![image](https://raw.github.com/mpriest/PAGHG_final/tree/main/images/RFMiterator1.PNG)
 
-![image](https://raw.github.com/mpriest/PAGHG_final/main/images/RFMiterator2.PNG)
+![image](https://raw.github.com/mpriest/PAGHG_final/tree/main/images/RFMiterator2.PNG)
 
 
 
