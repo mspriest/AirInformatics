@@ -1,0 +1,22 @@
+,Dataset,F1 Score
+0,Voter Data,0.4375
+1,General Population Data,0.3125
+2,Municipal Data,0.375
+3,Age Data,0.625
+4,Race/Ethnicity Data,0.5
+5,Family Unit Data,0.4375
+6,Housing Unit Data,0.3125
+7,Housing Affordability Data,0.4375
+8,Household Income Data,0.375
+9,Economic Data,0.1875
+10,Public Program Data,0.5
+11,Disability Data,0.6875
+12,Education Data,0.3125
+13,Employment Data,0.375
+14,Birth Data,0.375
+15,Death Data,0.3125
+16,Medical Care Data,0.4375
+17,Policing Data,0.3125
+18,Highway and Driving Data,0.375
+19,Farm Data,0.3125
+20,Randomly Associated Test Data,0.25
