@@ -57,14 +57,6 @@ def get_all_air( json_str = False ):
     all_air_json = json.dumps([dict(ix) for ix in air_query])
     return all_air_json
 
-# create route that renders index.html template
-# @app.route("/", defaults={"page": "index"})
-# @app.route('/<page>')
-# def html_lookup(page):
-#     try: 
-#         return render_template('{}.html'.format(page))
-#     except TemplateNotFound:
-#         abort(404)
 @app.route("/")
 def home():
     return render_template('index.html')
