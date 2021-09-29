@@ -1,4 +1,4 @@
-,Dataset,F1 Score
+,Dataset Names,SVM LAND CLASS F1-Score
 0,Voter Data,0.5625
 1,General Population Data,0.4375
 2,Municipal Data,0.6875
