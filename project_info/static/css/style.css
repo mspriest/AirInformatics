@@ -15,6 +15,14 @@
 
     /* text-shadow: 1px 1px 2px black, 0 0 25px rgb(0, 217, 255), 0 0 10px darkblue; */
 }
+
+#footnotes{
+  justify-content: center;   
+  text-align: center;  
+  font-size: small;
+  color:black;
+}
+
 /* https://64.media.tumblr.com/e1f5fb0a5699911d4ac822a8173c440c/tumblr_n4bzvmYcBG1tyxzxmo1_500.gif */
 /* "https://thumbs.gfycat.com/EmotionalEminentBarnswallow-size_restricted.gif" */
 body{
@@ -141,3 +149,5 @@ h5 {
       width: 100%;
     }
     }
+
+    
