@@ -59,7 +59,7 @@ Using data from the Bureau of Economic Advancement and the Center for Rural Penn
 
 Considering the number of unique datasets we desired to explore, the machine learning was completed in pandas using several inhouse functions to automate the model building process with the following method types (the definitions of these methods are general and applied to all of the models -- for model specifics please see RandomForestCounties.ipynb in the datasets folder in the root directory of this repository to more closely evaluate how the method types were employed): 
 
-- run[MODELTYPE](): the function receives a desired subset of data and classifier, converts the dataframe and target column into training and testing datasets, scales the training and testing data, fits the model to the scaled training data, and scores the model with the scaled testing data. Lastly, it outputs the score of the model. 
+- runMODELTYPE(): the function receives a desired subset of data and classifier, converts the dataframe and target column into training and testing datasets, scales the training and testing data, fits the model to the scaled training data, and scores the model with the scaled testing data. Lastly, it outputs the score of the model. 
 
 - iterator(): in the event that a model did not show a stable score (i.e. it needed to learn more or lack of sufficient data), an iterator was employed to capture 50 runs of the model in order to collect an average score.
 
