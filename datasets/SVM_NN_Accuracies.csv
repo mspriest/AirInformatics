@@ -1,0 +1,9 @@
+﻿Dataset Names,NN,SVM
+Age Data,0.6875,0.8125
+Disability Data,0.5625,0.75
+Education Data,0.75,0.6875
+General Population Data,0.5625,0.4375
+Housing Affordability Data,0.6875,0.75
+Municipal Data,0.75,0.6875
+Public Program Data,0.6875,0.6875
+Race/Ethnicity Data,0.625,0.5625

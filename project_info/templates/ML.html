@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Air Quality & GHG Emissions</title>
+    <link rel="stylesheet" href="../static/css/style.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<div id="header-text">
+    <h1>
+        <strong id="top-title">
+            Pennsylvania's Air Quality and GHG Emissions
+        </strong>
+    </h1>
+    <p id="slogan">Explore, Discover, and Take Action!</p>
+</div>
+
+<body>
+    <div class="nav_bar">
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/background/">Background</a></li>
+            <li><a href="/ML/" id="onlink">Machine Learning</a></li>
+            <li><a href="/action/">Take Action</a></li>
+            <li><a href="/about/">About</a></li>
+        </ul>
+    </div>
+    <div class="main_container">
+        <h2><strong>GHG Emissions - The Unlikely Connections</strong></h2>
+        <p style="text-align: left">
+            <br />
+            The analysis of Pennsylvania proved what many likely expected: the
+            Commonwealth is among one of the worst contributors of CO2 emissions
+            across the country. But maybe you didn't know just how aggressively PA
+            contributes to the overall issue for the U.S. wWe wanted to put numbers
+            to that conversation. We wanted you to know so that when you take
+            action, you know the reason.
+        </p>
+        <p style="text-align: left">
+            <br />
+            Thinking about what we didn't know, as a team we wondered if there was
+            anything else contributing to CO2 emissions that was unseen. Community
+            organizers across the nation will tell you that climate injustice is
+            deeply tied to other forms of injustice and intricately so. Given the
+            amount of people that have access to public programs in a county, can a
+            machine tell if the CO2 emissions will be bad? Given information on
+            marginalized communities like folks of color and folks with
+            disabilities, can a machine determine if CO2 levels are within
+            "acceptable" standards? We wanted to prove it.
+        </p>
+        <p style="text-align: left">
+            <br />
+            Machine Learning (ML) is an incredibly powerful tool given it's
+            predictive and classifying capability. So we sought out to aggregate
+            small sets of social data (healthcare, statistics on policing, land
+            ownership, public program access, etc.) for each county in the
+            Commonwealth and determine if ML could be employed to predict if a given
+            county's CO2 emissions were likely to be acceptable or not.
+        </p>
+
+        <p style="text-align: left">
+            <br />
+            We used two different classifiers for our study.One was a land based
+            classifier that characterized the county's CO2 emissions as above or
+            below a national level for average CO2 emissions per area of land.
+            The other is a rate based classifier that used the change between the
+            two most recent years of data we had access to for a given county to
+            identify whether CO2 emissions were going up or down. Using these
+            two classifiers, we fed this information to 8 ML algorithms available
+            for from Python's Scikit Learn library.
+        </p>
+        <p style="text-align: left">
+            <br />
+            We wanted to use a high number of classification algorithms with one
+            goal in mind: if we throw these counties' social data outcomes and
+            classifiers at multiple ML algorithms and these models score above 50%
+            with little to no fine-tuning, then there certainly must be correlations
+            between social outcomes and climate change. Further, this suggests to us
+            that addressing other serious social issues can actually help chip away
+            at the climate crisis. Of course, a significantly deeper analysis would
+            need to be done on each individual dataset and the models would need
+            functional fine-tuning to understand the degree of correlation.
+        </p>
+
+        <br>
+        <br>
+        <h2><strong>Our Approach & Analysis</strong></h2>
+        <p style="text-align: left">
+            1. In general, the land based classifier scored higher than the rate based
+            classifier consistently. What this means is that across all models, the
+            selected Python supervised learning algorithms were able to predict that
+            CO2 levels would be above/below the national standard if given seemingly
+            unrelated social data sets. Sometimes, that prediction score was a high as
+            75% or even 81% depending on the data used for predictions (see Age data).
+        </p>
+        <br>
+        <p style="text-align: left">
+            For the purpose of the site, the default datasets depicted are Education
+            and Public Program. But, feel free to use the checkboxes on the right-hand
+            side of the bar graph to take a closer look at a dataset in which you have
+            more interest!
+        </p>
+        <br>
+        <p style="text-align: left">
+            2. In general, the land based classifier scored higher than
+            50% across all 21 data sets with nearly every single type of
+            classification model employed. There were some unique cases where the
+            model scored well below 50% at about 37% (see Farm data).
+        </p>
+        <br>
+        <p style="text-align: left">
+        3. Although none of these models were scoring above 90% in their predictive capability, it's important to note that
+        these models have little to no fine tuning. We believe this means that there is truth to the anecdote that
+        social injustices/issues and the climate crisis are intertwined. We wonder if remedying these other social
+        injustices may in turn help to chip away at climate change as well. Of course, specific fine tuning for each
+        model should be done per dataset to significantly improve or identify the limits of predictive capability.
+       </p>
+        <br>
+        <br>
+        <div class="tableauPlaceholder" id="viz1632924862674" style="position: relative">
+            <noscript><a href="#"><img alt="Land Classifier "
+                        src="https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;ML&#47;MLLandClassifer&#47;LandClassifier&#47;1_rss.png"
+                        style="border: none" /></a></noscript><object class="tableauViz" style="display: none">
+                <param name="host_url" value="https%3A%2F%2Fpublic.tableau.com%2F" />
+                <param name="embed_code_version" value="3" />
+                <param name="site_root" value="" />
+                <param name="name" value="MLLandClassifer&#47;LandClassifier" />
+                <param name="tabs" value="no" />
+                <param name="toolbar" value="yes" />
+                <param name="static_image"
+                    value="https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;ML&#47;MLLandClassifer&#47;LandClassifier&#47;1.png" />
+                <param name="animate_transition" value="yes" />
+                <param name="display_static_image" value="yes" />
+                <param name="display_spinner" value="yes" />
+                <param name="display_overlay" value="yes" />
+                <param name="display_count" value="yes" />
+                <param name="language" value="en-US" />
+                <param name="filter" value="publish=yes" />
+            </object>
+        </div>
+        <script type="text/javascript">
+            var divElement = document.getElementById("viz1632924862674");
+            var vizElement = divElement.getElementsByTagName("object")[0];
+            vizElement.style.width = "100%";
+            vizElement.style.height = divElement.offsetWidth * 0.75 + "px";
+            var scriptElement = document.createElement("script");
+            scriptElement.src =
+                "https://public.tableau.com/javascripts/api/viz_v1.js";
+            vizElement.parentNode.insertBefore(scriptElement, vizElement);
+        </script>
+        <br />
+        <br />
+
+        <div class="tableauPlaceholder" id="viz1632888188827" style="position: relative">
+            <noscript><a href="#"><img alt="All Classifier Analysis "
+                        src="https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Cl&#47;ClassifierAnalysis&#47;Sheet1&#47;1_rss.png"
+                        style="border: none" /></a></noscript><object class="tableauViz" style="display: none">
+                <param name="host_url" value="https%3A%2F%2Fpublic.tableau.com%2F" />
+                <param name="embed_code_version" value="3" />
+                <param name="site_root" value="" />
+                <param name="name" value="ClassifierAnalysis&#47;Sheet1" />
+                <param name="tabs" value="no" />
+                <param name="toolbar" value="yes" />
+                <param name="static_image"
+                    value="https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Cl&#47;ClassifierAnalysis&#47;Sheet1&#47;1.png" />
+                <param name="animate_transition" value="yes" />
+                <param name="display_static_image" value="yes" />
+                <param name="display_spinner" value="yes" />
+                <param name="display_overlay" value="yes" />
+                <param name="display_count" value="yes" />
+                <param name="language" value="en-US" />
+                <param name="filter" value="publish=yes" />
+            </object>
+        </div>
+        <script type="text/javascript">
+            var divElement = document.getElementById("viz1632888188827");
+            var vizElement = divElement.getElementsByTagName("object")[0];
+            vizElement.style.width = "100%";
+            vizElement.style.height = divElement.offsetWidth * 0.75 + "px";
+            var scriptElement = document.createElement("script");
+            scriptElement.src =
+                "https://public.tableau.com/javascripts/api/viz_v1.js";
+            vizElement.parentNode.insertBefore(scriptElement, vizElement);
+        </script>
+        <br>
+        <br>
+        <div id="footnotes">
+            Center for Rural Pennsylvania, <i>County Profiles - The Center for Rural Pennsylvania</i> [website], <a
+                href="https://www.rural.palegislature.us/county_profiles.cfm" ,
+                target="_blank">https://www.rural.palegislature.us/county_profiles.cfm</a>, (accessed 21 August 2021).
+        </div>
+    </div>
+
+
+
+    <!-- scripts -->
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="https://d3js.org/d3.v6.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="{{url_for('static', filename='js/app.js')}}"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.anychart.com/releases/8.10.0/js/anychart-base.min.js"></script>
+</body>
+
+</html>

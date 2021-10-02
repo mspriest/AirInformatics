@@ -1,0 +1,22 @@
+﻿Datasest Names,KNN Land Classifier,RFM Land Classifier,KNN Rate Classifier,RFM Rate Classifier
+Voter Data,0.75,0.5,0.5,0.4925
+General Population Data,0.812,0.6325,0.625,0.485
+Municipal Data,0.75,0.68375,0.438,0.49875
+Age Data,0.812,0.69625,0.688,0.60125
+Race/Ethnicity Data,0.75,0.71125,0.688,0.4675
+Family Unit Data,0.688,0.66375,0.5,0.645
+Housing Unit Data,0.75,0.66,0.688,0.425
+Housing Affordability Data,0.75,0.7225,0.625,0.5675
+Household Income Data,0.688,0.60125,0.625,0.43
+Economic Data,0.688,0.66875,0.312,0.42625
+Public Program Data,0.75,0.69,0.625,0.56875
+Disability Data,0.75,0.69875,0.562,0.57
+Education Data,0.75,0.63875,0.688,0.6725
+Employment Data,0.562,0.62875,0.625,0.37625
+Birth Data,0.688,0.6225,0.625,0.3975
+Death Data,0.688,0.625,0.75,0.575
+Medical Care Data,0.625,0.6225,0.688,0.485
+Policing Data,0.625,0.61875,0.375,0.45375
+Highway and Driving Data,0.688,0.64125,0.688,0.49375
+Farm Data,0.688,0.55875,0.562,0.61375
+Randomly Associated Test Data,0.688,0.57625,0.688,0.32375

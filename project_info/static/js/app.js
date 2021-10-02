@@ -327,7 +327,7 @@ function buildStaticBarCounties(county_totals) {
     },
     font: {
       family: "Arial",
-      size: "14",
+      size: "16",
       color: "black",
     },
     yaxis: {
@@ -339,7 +339,7 @@ function buildStaticBarCounties(county_totals) {
       l: 150,
       r: 50,
       b: 200,
-      t: 100,
+      t: 50,
       pad: 4,
     },
   };
@@ -395,8 +395,8 @@ function buildStaticBarParents(parent_totals) {
     margin: {
       l: 100,
       r: 90,
-      b: 450,
-      t: 100,
+      b: 80,
+      t: 50,
       pad: 4,
     },
   };

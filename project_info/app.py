@@ -66,6 +66,9 @@ def about():
 @app.route("/background/")
 def background():
     return render_template("background.html")
+@app.route("/ML/")
+def ML():
+    return render_template("ML.html")
 @app.route("/action/")
 def action():
     return render_template("action.html")

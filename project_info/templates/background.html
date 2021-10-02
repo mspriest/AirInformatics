@@ -1,93 +1,132 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Air Quality & GHG Emissions</title>
-    <link rel="stylesheet" href="../static/css/style.css"/>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Air Quality & GHG Emissions</title>
+  <link rel="stylesheet" href="../static/css/style.css" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
     integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <div id="header-text">
-    <h1><strong id="top-title"> Pennsylvania's Air Quality and GHG Emissions  </strong></h1>
-    <p id="slogan"> Explore, Discover, and Take Action! </p>
+  <h1><strong id="top-title"> Pennsylvania's Air Quality and GHG Emissions </strong></h1>
+  <p id="slogan"> Explore, Discover, and Take Action! </p>
 </div>
+
 <body>
-    <div class="nav_bar">
-        <ul>
-            <li><a href="/" >Home</a></li>
-            <li><a href="/background/" id="onlink">Background</a></li>
-            <li><a href="/action/">Take-Action</a></li>
-            <li><a href="/about/">About</a></li>
-        </ul>
-    </div>
-    <div class="main_container">
-        <p> <strong> Explore the Relationiship between Emissions to Quality of Air in Pennsylvania.</strong> <br>    
-        </p> 
-        <h2> Quality of Air </h2>
-        <p> The Clear Air Act requires the Environmental Protection Agency (<a href="https://ghgdata.epa.gov/ghgp/main.do" , target="_blank"> EPA </a>)  to set National Air Ambient Quality Stantards (<a href="https://www.epa.gov/criteria-air-pollutants/naaqs-table", target="_blank"> NAAQS </a>) for six principle pollutants which can be harmful to public and the environmental health. <br>
-          Based on the dataset from (<a href="https://www.phaim1.health.pa.gov/EDD/", target="_blank"> EDDIE </a>), 2010 was the worst year for air quality in PA and since 2014, has trended around <strong>200 days over the standard</strong> set by the NAAQS (see PA Air Quality, 2009-2018 chart). From 2009-2018, counties with the worst air quality are <strong>Philadelphia</strong> and <strong>Allegheny</strong> county (see Air Quality by County, 2009-2018 chart).
-        </p>
-         <!--plotly code start here-- -->
+  <div class="nav_bar">
+    <ul>
+      <li><a href="/" >Home</a></li>
+      <li><a href="/background/"id="onlink" >Background</a></li>
+      <li><a href="/ML/" >Machine Learning</a></li>
+      <li><a href="/action/" >Take Action</a></li>
+      <li><a href="/about/">About</a></li>
+    </ul>
+  </div>
+  <div class="main_container">
+    <h2> <strong> Pennsylvania GHG Emissions & Air Quality by County</strong> </h2>
+    </p>
+    <br>
+    <p> The Clear Air Act requires the Environmental Protection Agency (EPA) to set National Air Ambient Quality Standards (NAAQS) for six principle
+      pollutants which can be harmful to public and the environmental health<sup>1</sup>.</p>
+      <br>
+      <p>
+      Based on the dataset from the Enterprise Data Dissemination Informatics Exchange (EDDIE)<sup>2</sup>, 2010
+      was the worst year for air quality in PA and since 2014, has trended around <strong>200 days over the
+        standard</strong> set by the NAAQS (see PA Air Quality, 2009-2018 chart). From 2009-2018, counties with the
+      worst air quality are <strong>Philadelphia</strong> and <strong>Allegheny</strong> county (see Air Quality by
+      County, 2009-2018 chart).
+    </p>
+    <!--plotly code start here-- -->
     <div class="container-fluid">
-    <div class="row">
-      <div class="col-md-6">
-        <div id="paair"></div>
-      </div>
-      <div class="col-md-6">
-        <div id="top15air"></div>
-      </div>
-    </div>
-    <br> <h2> Breakdown of Carbon Emissions </h2> <br>
-    <p> Utilizing the Greenhouse Gas Emissions from Large Facilities dataset from the (<a href="https://ghgdata.epa.gov/ghgp/main.do" , target="_blank"> EPA </a>), from 2009-2018 <strong>Indiana</strong> and <strong>Armstrong</strong> county consistently had the largest overall carbon emissions (in 2019, nearly <strong>20M and 12M metric tons</strong> respectively). When exploring the facility emissions at the county level, it became apparent that the bulkof carbon emissions weren’t isolated to one specific facility, but rather, multiple facilities’ parent company. For instance, in 2019, Arclight Capital LLC (an energy conglomerate) accounted for nearly <strong>53.4% </strong> all CO2 emissions in Indiana County and <strong>95.8%</strong> of all emissions in Armstrong County. <br> </p>
-    <div class="row">
-      <div class="column" style="width: 43%; clear: left;">
-        <div id="countybar"></div>
-      </div>
-      <div class="column" style="width: 13%; padding: 2px;">
-        <div class="well">
-          <h5>Select Desired Year:</h5>
-          <select id="selYear" style="position: relative;" onchange="yearOptionChanged(this.value)">
-          </select>
-          <h5>County Name:</h5>
-          <select id="selCounty" style="position: relative;" onchange="countyOptionChanged(this.value)">
-          </select>
+      <div class="row">
+        <div class="col-md-6">
+          <div id="paair"></div>
+        </div>
+        <div class="col-md-6">
+          <div id="top15air"></div>
         </div>
       </div>
-        <div class="column" style="width: 43%; clear: right;" >
+      <br>
+      <h2> Breakdown of Carbon Emissions </h2> <br>
+      <p> Utilizing the greenhouse gas emissions from large facilities dataset<sup>3</sup>, from 2009-2018
+        <strong>Indiana</strong> and <strong>Armstrong</strong> county consistently had the largest overall carbon
+        emissions (in 2019, nearly <strong>20M and 12M metric tons</strong> respectively). When exploring the facility
+        emissions at the county level, it became apparent that the bulk of carbon emissions weren’t isolated to one
+        specific facility, but rather multiple facilities’ parent company. For instance, in 2019, Arclight Capital LLC
+        (an energy conglomerate) accounted for nearly <strong>53.4% </strong> all CO2 emissions in Indiana County and
+        <strong>95.8%</strong> of all emissions in Armstrong County. <br> </p>
+        <br>
+        <br>
+      <div class="row">
+        <div class="column" style="width: 43%; clear: left;">
+          <div id="countybar"></div>
+        </div>
+        <div class="column" style="width: 13%; padding: 2px;">
+          <div class="well">
+            <h5>Select Desired Year:</h5>
+            <select id="selYear" style="position: relative;" onchange="yearOptionChanged(this.value)">
+            </select>
+            <h5>County Name:</h5>
+            <select id="selCounty" style="position: relative;" onchange="countyOptionChanged(this.value)">
+            </select>
+          </div>
+        </div>
+        <div class="column" style="width: 43%; clear: right;">
           <div id="countypie1"></div>
         </div>
-       <!-- the parent company bar graph is not displaying correctly so it is collapse and won't be visible on the site.  -->
-        <div class="column" style="width:fit-content; visibility: collapse;">
+        <!-- the parent company bar graph is not displaying correctly so it is collapse and won't be visible on the site.  -->
+        <div class="column" style="width: fit-content; display:block; margin-left: auto; margin-right: auto;">
           <div id="parentbar"></div>
         </div>
-        </div>
-        <p> <br> Lastly, the GHG Emissions vs. Air Pollution chart (2018) depicts the limitations of the data and (<a href="https://www.epa.gov/criteria-air-pollutants/naaqs-table", target="_blank"> NAAQS </a>) measurement standards; out of 67 PA counties, <strong>13 counties reported zero (0) </strong>air quality days of the standard and the <strong>27 counties reported nothing</strong>. Furthermore, variation in population between counties can have a significant impact on the number of person-days above the standards. The number of days above the NAAWS x number of people = number of person-days above set standard. For example, Indiana and Armstrong have the <strong>highest overall carbon emissions but a small population size</strong>; and thus, their person-days above the standard is only at 2 days. <br> </p>
-        <div class="row">
+      </div>
+      <p> <br> Lastly, the GHG Emissions<sup>3</sup> vs. Air Pollution chart<sup>2</sup> (2018) depicts the limitations of the data and the NAAQS measurement
+        standards; out of 67 PA counties, <strong>13 counties reported zero (0) </strong>air quality days of the
+        standard and the <strong>27 counties reported nothing</strong>. Furthermore, variation in population between
+        counties can have a significant impact on the number of person-days above the standards. The number of days
+        above the NAAQS x number of people = number of person-days above set standard. For example, Indiana and
+        Armstrong have the <strong>highest overall carbon emissions but a small population size</strong>; and thus,
+        their person-days above the standard is only at 2 days.
+      </p>
+      <br>
+      <div class="row">
         <div class="column" style="width: fit-content; display:block; margin-left: auto; margin-right: auto;">
           <div id="bubble"></div>
         </div>
         <br> <br>
-        </div>
-      </div>
-<!-- ---------------------------------------------- -->
+          </div>
+          <p>
+            <br>
+            <br>
+          <div id = "footnotes">
+            <sup>1</sup>EPA, <i>NAAQS Table | US EPA</i> [website], <a href="https://www.epa.gov/criteria-air-pollutants/naaqs-table", target="_blank">https://www.epa.gov/criteria-air-pollutants/naaqs-table</a>, (accessed 21 August 2021).
+            <br>
+            <sup>2</sup>EDDIE, <i>EDDIE</i> [website], <a href="phaim1.health.pa.gov/EDD/", target="_blank">phaim1.health.pa.gov/EDD/</a>, (accessed 21 August 2021).
+            <br>
+            <sup>3</sup>EPA, <i>EPA Facility Level GHG Emissions Data</i> [website], 26 September 2020, <a href="https://ghgdata.epa.gov/ghgp/main.do", target="_blank">https://ghgdata.epa.gov/ghgp/main.do</a>, (accessed 21 August 2021).
+                     </p>
+          </div>
     </div>
-        <!-- scripts -->
-        <script src="https://d3js.org/d3.v5.min.js"></script>
-        <script src="https://d3js.org/d3.v6.js"></script>
-        <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-        <script src="{{url_for('static', filename='js/app.js')}}"></script>
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-          integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-          crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
-          integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-          crossorigin="anonymous"></script>
-          <script src="https://cdn.anychart.com/releases/8.10.0/js/anychart-base.min.js"></script>
+    <!-- ---------------------------------------------- -->
+  </div>
+  <!-- scripts -->
+  <script src="https://d3js.org/d3.v5.min.js"></script>
+  <script src="https://d3js.org/d3.v6.js"></script>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <script src="{{url_for('static', filename='js/app.js')}}"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+    integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.anychart.com/releases/8.10.0/js/anychart-base.min.js"></script>
 
 </body>
-</html>  
+
+</html>
